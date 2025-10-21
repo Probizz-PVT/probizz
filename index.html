@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Probizz - Professional Business Solutions</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background-color: #0b0b0b;
+      color: #f0c040;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #000;
+      padding: 20px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 90%;
+      margin: auto;
+    }
+
+    nav .logo {
+      font-size: 1.6em;
+      font-weight: bold;
+      color: #f0c040;
+      letter-spacing: 1px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+    }
+
+    nav ul li {
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #f0c040;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: white;
+    }
+
+    section {
+      padding: 100px 10% 60px;
+    }
+
+    /* HERO SECTION */
+    #home {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+    }
+
+    .bg-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+    }
+
+    .bg-slide.active {
+      opacity: 1;
+    }
+
+    #home::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 1;
+    }
+
+    #home h1,
+    #home p {
+      z-index: 2;
+      position: relative;
+      transition: opacity 1s ease-in-out;
+    }
+
+    #home.fade h1,
+    #home.fade p {
+      opacity: 0.6;
+    }
+
+    #home h1 {
+      font-size: 3em;
+      color: #f0c040;
+    }
+
+    #home p {
+      margin-top: 15px;
+      font-size: 1.2em;
+      color: #eee;
+    }
+
+    #services h2,
+    #team h2,
+    #clients h2,
+    #contact h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2em;
+      color: #f0c040;
+      text-transform: uppercase;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+    }
+
+    .service-card {
+      background: #111;
+      padding: 30px;
+      border-radius: 12px;
+      transition: transform 0.3s, background 0.3s;
+      border: 1px solid #333;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      background: #222;
+      border-color: gold;
+    }
+
+    .service-card img {
+      width: 60px;
+      margin-bottom: 15px;
+    }
+
+    .team-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .team-member {
+      background: #111;
+      padding: 20px;
+      width: 220px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 10px #222;
+    }
+
+    .team-member img {
+      width: 100%;
+      border-radius: 50%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .team-member h3 {
+      margin: 15px 0 5px;
+      color: #f0c040;
+    }
+
+   .clients {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  text-align: center;
+}
+
+.clients .client-logo {
+  background: #111;
+  padding: 30px;
+  border-radius: 12px;
+  width: 250px;
+  border: 1px solid #333;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.clients .client-logo:hover {
+  transform: translateY(-5px);
+  background: #222;
+  border-color: gold;
+}
+
+.clients .client-logo h3 {
+  color: gold;
+  margin: 10px 0 5px;
+}
+
+.clients .client-logo p {
+  font-size: 14px;
+  color: #eee;
+  line-height: 1.5;
+}
+
+.contact p {
+  color: #eee;
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+.contact a {
+  color: gold;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.contact a:hover {
+  color: #fff;
+}
+
+    form {
+      max-width: 500px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    form input,
+    form textarea {
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      background: #222;
+      color: white;
+    }
+
+    form button {
+      padding: 12px;
+      background: #f0c040;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    form button:hover {
+      background: white;
+      color: black;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #000;
+      color: #f0c040;
+      font-size: 0.9em;
+    }
+
+    html {
+      scroll-padding-top: 80px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">Probizz</div>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#team">Our Team</a></li>
+        <li><a href="#clients">Clients</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home">
+    <div class="bg-slide active" style="background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1350&q=80');"></div>
+    <div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1350&q=80');"></div>
+    <div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1350&q=80');"></div>
+    <h1>Welcome to Probizz</h1>
+    <p>"We combine strategy, creativity, and technology to transform your business ideas into measurable growth and lasting success."</p>
+  </section>
+
+   <section id="services">
+    <h2>Our Services</h2>
+    <div class="services">
+      <div class="service-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135679.png" alt="">
+        <h3>Business Consulting</h3>
+        <p>      Strategic solutions,Posters,Flyers and Business cards to help your company grow and perform at its best.</p>
+      </div>
+      <div class="service-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/2920/2920235.png" alt="">
+        <h3>Meta Ads</h3>
+        <p>Boost your brand visibility with data-driven advertising campaigns.</p>
+      </div>
+      <div class="service-card">
+        <img src= "https://cdn-icons-png.flaticon.com/512/1055/1055687.png"alt="">
+        <h3>Web Designing</h3>
+        <p>Modern, responsive websites tailored to your business goals.</p>
+      </div>
+      <div class="service-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/1055/1055644.png" alt="">
+        <h3>Custom Portfolios</h3>
+        <p>Personalized digital portfolios that represent your unique identity.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="team">
+    <h2>Meet Our Team</h2>
+    <div class="team-container">
+      <div class="team-member">
+        <img src="CEO.jpg" alt="Team Member" />
+        <h3>Fathima Sahla</h3>
+        <p>CEO & Design Analyst</p>
+      </div>
+      <div class="team-member">
+        <img src="Founder.jpg" alt="Team Member" />
+        <h3>Ubaid</h3>
+        <p>Founder & Digital Solutions Specialist</p>
+      </div>
+     <!--  <div class="team-member">
+        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Team Member" />
+        <h3>Michael Brown</h3>
+        <p>Lead Strategist</p>
+      </div> -->
+    </div>
+  </section>
+
+ <section id="clients">
+  <h2>What Say Our Clients</h2>
+  <div class="clients">
+    <div class="client-logo">
+      <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client 1" style="border-radius:50%; width:100px; height:100px; object-fit:cover; margin-bottom:15px;">
+      <h3>John Doe</h3>
+      <p>"Probizz helped us streamline our business processes and boosted our revenue significantly. Highly recommend!"</p>
+    </div>
+    <div class="client-logo">
+      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client 2" style="border-radius:50%; width:100px; height:100px; object-fit:cover; margin-bottom:15px;">
+      <h3>Mary Smith</h3>
+      <p>"Their Meta Ads campaigns increased our online presence drastically. We are thrilled with the results!"</p>
+    </div>
+    <div class="client-logo">
+      <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Client 3" style="border-radius:50%; width:100px; height:100px; object-fit:cover; margin-bottom:15px;">
+      <h3>Michael Brown</h3>
+      <p>"The custom portfolio they designed for us perfectly reflected our brand identity. Truly professional work!"</p>
+    </div>
+  </div>
+</section>
+  <section id="contact">
+  <h2>Contact Us</h2>
+  <div class="contact">
+    <!-- Contact Info with Icons -->
+    <div style="margin-bottom:30px;">
+      <p style="text-align: center;">
+        <img src="wtsapp.jpg" alt="Phone" style="width:20px; vertical-align:middle; margin-right:8px;">
+        
+        <a href="https://wa.me/917034931522" target="_blank" style="color:gold; text-decoration:none;">+91 70349 31522 &nbsp | &nbsp</a>
+    
+        <img src="gmail.png" alt="Email" style="width:20px; vertical-align:middle; margin-right:8px;">
+        
+        <a href="mailto:mail.probizz@gmail.com" style="color:gold; text-decoration:none;">mail.probizz@gmail.com &nbsp | &nbsp</a>
+     
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" style="width:20px; vertical-align:middle; margin-right:8px;">
+        
+        <a href="https://instagram.com/pro_bizz_" target="_blank" style="color:gold; text-decoration:none;">@pro_bizz_</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+  <footer>
+    © 2025 Probizz. All rights reserved.
+  </footer>
+
+  <script>
+    const slides = document.querySelectorAll(".bg-slide");
+    const home = document.getElementById("home");
+    let current = 0;
+
+    function changeSlide() {
+      slides[current].classList.remove("active");
+      home.classList.add("fade");
+      current = (current + 1) % slides.length;
+      slides[current].classList.add("active");
+      setTimeout(() => home.classList.remove("fade"), 1000);
+    }
+
+    setInterval(changeSlide, 5000); // every 5 seconds
+  </script>
+</body>
+</html>
